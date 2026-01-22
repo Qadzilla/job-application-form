@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Job Application Form</title>
+    <link rel="stylesheet" href="/src/styles.css" />
+  </head>
+  <body>
+    <div id="app">
+      <header class="header">
+        <h1>Job Application</h1>
+        <div class="progress">
+          <div class="progress-step" data-step="1">1. Personal Info</div>
+          <div class="progress-step" data-step="2">2. Eligibility</div>
+          <div class="progress-step" data-step="3">3. Experience</div>
+          <div class="progress-step" data-step="4">4. Review</div>
+        </div>
+      </header>
+
+      <main class="main">
+        <form id="application-form" novalidate>
+          <!-- Step 1: Personal Info -->
+          <section class="form-step" data-step="1">
+            <h2>Personal Information</h2>
+
+            <div class="form-group">
+              <label for="firstName">First Name *</label>
+              <input type="text" id="firstName" name="firstName" required />
+              <span class="error-message" data-error="firstName"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="lastName">Last Name *</label>
+              <input type="text" id="lastName" name="lastName" required />
+              <span class="error-message" data-error="lastName"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address *</label>
+              <input type="email" id="email" name="email" required />
+              <span class="error-message" data-error="email"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Phone Number *</label>
+              <input type="tel" id="phone" name="phone" required placeholder="e.g., 555-123-4567" />
+              <span class="error-message" data-error="phone"></span>
+            </div>
+          </section>
+
+          <!-- Step 2: Work Eligibility -->
+          <section class="form-step" data-step="2">
+            <h2>Work Eligibility</h2>
+
+            <div class="form-group">
+              <label>Are you authorized to work in this country? *</label>
+              <div class="radio-group">
+                <label class="radio-label">
+                  <input type="radio" name="workAuth" value="yes" />
+                  <span>Yes</span>
+                </label>
+                <label class="radio-label">
+                  <input type="radio" name="workAuth" value="no" />
+                  <span>No</span>
+                </label>
+              </div>
+              <span class="error-message" data-error="workAuth"></span>
+            </div>
+
+            <div class="conditional-fields" id="sponsorship-fields" style="display: none;">
+              <div class="form-group">
+                <label>Will you require sponsorship? *</label>
+                <div class="radio-group">
+                  <label class="radio-label">
+                    <input type="radio" name="sponsorshipNeeded" value="yes" />
+                    <span>Yes</span>
+                  </label>
+                  <label class="radio-label">
+                    <input type="radio" name="sponsorshipNeeded" value="no" />
+                    <span>No</span>
+                  </label>
+                </div>
+                <span class="error-message" data-error="sponsorshipNeeded"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="explanation">Please explain your work authorization situation *</label>
+                <textarea id="explanation" name="explanation" rows="4" placeholder="Minimum 20 characters"></textarea>
+                <span class="error-message" data-error="explanation"></span>
+              </div>
+            </div>
+          </section>
+
+          <!-- Step 3: Experience -->
+          <section class="form-step" data-step="3">
+            <h2>Experience</h2>
+
+            <div class="form-group">
+              <label for="yearsExperience">Years of Experience *</label>
+              <input type="number" id="yearsExperience" name="yearsExperience" min="0" step="1" required />
+              <span class="error-message" data-error="yearsExperience"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="portfolioUrl">Portfolio URL (optional)</label>
+              <input type="url" id="portfolioUrl" name="portfolioUrl" placeholder="https://..." />
+              <span class="error-message" data-error="portfolioUrl"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="resumeUrl">Resume URL (optional)</label>
+              <input type="url" id="resumeUrl" name="resumeUrl" placeholder="https://..." />
+              <span class="error-message" data-error="resumeUrl"></span>
+            </div>
+          </section>
+
+          <!-- Step 4: Preview -->
+          <section class="form-step" data-step="4">
+            <h2>Review Your Application</h2>
+            <div id="preview-content" class="preview-content"></div>
+          </section>
+
+          <!-- Success State -->
+          <section class="form-step success-state" data-step="success" style="display: none;">
+            <div class="success-content">
+              <h2>Application Submitted!</h2>
+              <p>Thank you for your application.</p>
+              <p>Your application ID is: <strong id="application-id"></strong></p>
+              <button type="button" id="new-application-btn" class="btn btn-primary">Submit Another Application</button>
+            </div>
+          </section>
+
+          <!-- Navigation Buttons -->
+          <div class="form-navigation">
+            <button type="button" id="prev-btn" class="btn btn-secondary" style="display: none;">Back</button>
+            <button type="button" id="next-btn" class="btn btn-primary">Next</button>
+            <button type="submit" id="submit-btn" class="btn btn-primary" style="display: none;">Submit Application</button>
+          </div>
+        </form>
+      </main>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
